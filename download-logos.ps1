@@ -1,4 +1,4 @@
-﻿# Downloads every logo in logos.csv into .\images, named after the school
+﻿# Downloads every logo in cfb-logos.csv into .\images, named after the school
 # (lowercase, underscores). Standard logo -> <school>.png, dark variant -> <school>_dark.png
 # Usage:  powershell -ExecutionPolicy Bypass -File .\download-logos.ps1
 
@@ -13,9 +13,9 @@ function Get-Slug([string]$name) {
     return ($s -replace '[^a-z0-9]+', '_').Trim('_')    # everything else -> underscore
 }
 
-# logos.csv is Latin-1 encoded (e.g. "San José State"), so read it that way
+# cfb-logos.csv is Latin-1 encoded (e.g. "San José State"), so read it that way
 # Open with FileShare.ReadWrite so this still works while the CSV is open in Excel
-$fs = [IO.File]::Open((Join-Path $root 'logos.csv'), 'Open', 'Read', 'ReadWrite')
+$fs = [IO.File]::Open((Join-Path $root 'cfb-logos.csv'), 'Open', 'Read', 'ReadWrite')
 try {
     $reader = New-Object IO.StreamReader($fs, [Text.Encoding]::GetEncoding('iso-8859-1'))
     $text = $reader.ReadToEnd()
